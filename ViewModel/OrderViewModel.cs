@@ -28,13 +28,6 @@ public partial class OrderViewModel : ObservableObject
     string mensagem;
 
     [RelayCommand]
-    async Task Appearing()
-    {
-        var consultaPedido = await db.ConsultarPedido();
-        Pedidos = new ObservableCollection<Pedido>(consultaPedido);
-    }
-
-    [RelayCommand]
     async Task Pedido()
     {
         await Shell.Current.GoToAsync(nameof(EscolhaCliente));

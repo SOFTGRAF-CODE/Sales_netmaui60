@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="MainPage.xaml.cs" />
 	  <Compile Remove="ViewModel\FiltraClienteViewModel.cs" />
 	  <Compile Remove="ViewModel\LoginViewModelOld.cs" />
 	  <Compile Remove="ViewModel\PedidoMainViewModel.cs" />
@@ -57,6 +58,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Remove="MainPage.xaml" />
 	  <MauiXaml Remove="View\FiltraCliente.xaml" />
 	  <MauiXaml Remove="View\PedidoMain.xaml" />
 	</ItemGroup>

@@ -40,7 +40,7 @@ namespace appSGSales2.ViewModel
             else
                 await database.atualizaPedido(Pedidos);
 
-            await Shell.Current.GoToAsync("//MainPage/OrderView");
+            await Shell.Current.GoToAsync("LoginView/OrderView");
         }
     }
 }

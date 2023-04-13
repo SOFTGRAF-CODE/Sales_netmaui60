@@ -6,7 +6,6 @@
             x:DataType="viewmodel:OrderViewModel"
             xmlns:models="clr-namespace:appSGSales2.Model"
             Title ="Pedidos">
-
     <Shell.BackButtonBehavior>
         <BackButtonBehavior IsEnabled="false" IsVisible="False"/>
     </Shell.BackButtonBehavior>

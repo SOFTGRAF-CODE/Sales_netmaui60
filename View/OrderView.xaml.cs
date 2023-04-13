@@ -7,6 +7,7 @@ namespace appSGSales2.View;
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class OrderView : ContentPage
 {
+    GerenciadorDB database;
     public OrderView(OrderViewModel vm)
 	{
 		InitializeComponent();
@@ -14,7 +15,15 @@ public partial class OrderView : ContentPage
         BindingContext = vm;
 
     }
-    
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        //Atribuir tela para propriedade para localiza-la no momento de retornar a mesma tela.
+        database = new GerenciadorDB();
+        var consultaPedido = await database.ConsultarPedido();
+        listaPedido.ItemsSource = consultaPedido;
+    }
     async void Detalhe_Tapped(object sender, EventArgs e)
     {
         Label lblDetalhePedido = (sender as Label);
