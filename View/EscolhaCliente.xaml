@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:appSGSales2.Model"
+             xmlns:viewmodel="clr-namespace:appSGSales2.ViewModel"
+             xmlns:controls="clr-namespace:Sales_netmaui60.Controls"
+             x:DataType="viewmodel:EscolhaClienteViewModel"
+             x:Class="appSGSales2.View.EscolhaCliente"
+             Title="Pedidos">
+    <Shell.SearchHandler>
+        <controls:ItemSearchHandler Placeholder="Enter search term"
+                                      ShowsResults="false" DisplayMemberName="RAZAO" >
+        </controls:ItemSearchHandler>
+    </Shell.SearchHandler>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <StackLayout>
+                <SearchBar x:Name="sbCliente" TextChanged="sbCliente_TextChanged" />
+            </StackLayout>
+            <ListView x:Name="listaCliente" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Cliente">
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="100" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                            <StackLayout Grid.Column="0" Padding="10" Margin="0" Spacing="-0.2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding CLIENTE}" FontAttributes="Bold" FontSize="Caption" Margin="0" />
+                                <Label Text="{Binding RAZAO}" FontAttributes="Bold" FontSize="Caption"  Margin="0" />
+                                <Label Text="{Binding ENDERECO}" FontAttributes="Bold" FontSize="Caption" />
+                                <Label Text="{Binding BAIRRO}" FontAttributes="Bold" FontSize="Caption"  />
+                                <Label Text="{Binding ESTADO}" FontSize="Caption" FontAttributes="Bold" />
+                                <Label Text="{Binding CGC}" FontSize= "Caption" FontAttributes="Bold"  />
+                                <Label Text="{Binding CPF}" FontSize= "Caption" FontAttributes="Bold"  />
+                            </StackLayout>
+                                <StackLayout Grid.Column="1" Padding="10">
+                                    <Label Text="+Pedido">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer 
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EscolhaClienteViewModel}},Path=TapCommand}"
+                                                CommandParameter="{Binding .}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

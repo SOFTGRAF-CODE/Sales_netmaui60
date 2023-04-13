@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:behavior="clr-namespace:appSGSales2.Util"
+             mc:Ignorable="d"
+    x:Class="appSGSales2.View.DetalhePedidoItem" Title="Itens">
+    
+    <ContentPage.Content>
+      <StackLayout>
+            <StackLayout Orientation="Vertical" Padding="20" Margin="30" Spacing="0">
+                <Label Text="Código do Produto" FontSize="Micro"/>
+                <Label Text="{Binding CODMMCC}" FontSize="Medium" FontAttributes="Bold"/>
+                <Label Text="Descrição" FontSize="Micro" Margin="0,10,0,0"/>
+                <Label Text="{Binding DESCRICAO}" FontSize="Medium" FontAttributes="Bold"/>
+                <Label Text="Quantidade" FontSize="Caption" Margin="0,10,0,0"/>
+                <Entry x:Name="QTDPED" Grid.Column="0"  Text="{Binding QTDPED}" Placeholder="Digite a quantidade" Keyboard="Numeric" >
+                    <Entry.Behaviors>
+                        <behavior:MaskedBehavior Mask="XXXXXXXXX" />
+                    </Entry.Behaviors>
+                </Entry>
+                
+                <Button x:Name="btnSalvaritem" Text="Salvar Item" Clicked="salvarItemPedido_Clicked" FontSize="Subtitle" FontAttributes="Bold" />
+            </StackLayout>
+        </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

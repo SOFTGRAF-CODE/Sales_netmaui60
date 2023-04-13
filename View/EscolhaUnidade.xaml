@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="appSGSales2.View.EscolhaUnidade">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <StackLayout>
+                <SearchBar x:Name="sbUnidade" TextChanged="sbUnidade_TextChanged" />
+            </StackLayout>
+            <ListView x:Name="listaUnidade" SeparatorColor="DeepSkyBlue" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                <StackLayout Grid.Column="0" Padding="10" Margin="0" Spacing="-0.2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                      <Label Text="{Binding CODUNID}" FontAttributes="Bold" FontSize="Title" Margin="0" />
+                                    <Label Text="{Binding DESCUNID}" FontAttributes="Bold" FontSize="Subtitle" Margin="0" />
+                                </StackLayout>
+                                    <StackLayout Grid.Column="1" Padding="10">
+                                        <Label Text="+Selecionar Unidade">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Unidade_Tapped"  CommandParameter="{Binding .}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

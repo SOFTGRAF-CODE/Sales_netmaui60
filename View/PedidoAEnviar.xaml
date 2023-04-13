@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="appSGSales2.View.PedidoAEnviar">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <ListView x:Name="listaPedido" HasUnevenRows="True" SeparatorVisibility="Default" VerticalOptions="FillAndExpand" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="10,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="120" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <StackLayout Grid.Column="0" Padding="10" Spacing="0">
+                                    <Label Text="{Binding CODCLI}" FontAttributes="Bold" FontSize="Subtitle"  />
+                                    <Label Text="{Binding DTEMISS}" FontAttributes="Bold" FontSize="Subtitle" />
+                                    <Label Text="{Binding CONTATO}" FontAttributes="Bold" FontSize="Subtitle" />
+                                    <Label Text="{Binding TRANSPORTADORA}" FontAttributes="Bold" FontSize="Subtitle" />
+                                    <Label Text="{Binding CONDPGTO}" FontSize="Subtitle" FontAttributes="Bold" />
+                                    <Label Text="{Binding OBSERVACAO}" FontAttributes="Bold"  />
+                                </StackLayout>
+                                <StackLayout Grid.Column="1" Padding="10" HorizontalOptions="FillAndExpand">
+                                    <Switch IsToggled="{Binding IsSelected}" BindingContext="{Binding .}" Toggled="Switch_Toggled" />
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout>
+                <Button Text="Enviar Pedido(s)" Clicked="enviarPedidos_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

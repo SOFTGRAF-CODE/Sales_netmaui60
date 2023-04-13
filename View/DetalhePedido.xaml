@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:viewmodel="clr-namespace:appSGSales2.ViewModel"
+             x:Class="appSGSales2.View.DetalhePedido">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Vertical">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="180" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout BindingContext="{Binding Pedidos}" Grid.Column="0" Padding="20">
+                        <Label Grid.Column="0" Text="{Binding CODCLI}"  FontAttributes="Bold" FontSize="Title" />
+                        <Label Grid.Column="0" Text="{Binding DTEMISS, StringFormat='{0:MMMM d, yyyy HH:mm}'}" FontSize="Micro" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="1" Grid.Column="1" Padding="20" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Label Text="Editar" Grid.Column="1">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DetalhePedidoViewModel}},Path=EditarPedidoCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text=" | " Grid.Column="1" />
+                        <Label Text="Excluir" Grid.Column="1">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DetalhePedidoViewModel}},Path=ExcluirPedidoCommand}"
+                                                CommandParameter="{Binding .}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+            <StackLayout Orientation="Vertical">
+                <Button Text="Adiciona Item" Clicked="NovoItem_Clicked"/>
+                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+                    <ListView x:Name="listaItensPedido" HasUnevenRows="True" SeparatorColor="DeepSkyBlue" SeparatorVisibility="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                    <Frame BorderColor="DimGray" CornerRadius="20" Padding="10" Margin="10" >
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="120"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <StackLayout Grid.Column="0" Orientation="Vertical" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" Padding="10" Margin="10" Spacing="0">
+                                                <Label Text="Item" FontSize="Micro"  />
+                                                <Label Text="{Binding ID_SEQ}" FontAttributes="Bold" FontSize="Medium"  />
+                                                <Label Text="Produto" FontSize="Micro" Margin="0,5,0,0"  />
+                                                <Label Text="{Binding CODMMCC}" FontSize="Caption" FontAttributes="Bold" TextColor="DarkBlue" />
+                                                <Label Text="Descrição" FontSize="Micro" Margin="0,5,0,0"  />
+                                                <Label Text="{Binding DESCRICAO}" FontSize="Caption" FontAttributes="Bold" TextColor="DarkBlue" />
+                                                <Label Text="Quantidade" FontSize="Caption" Margin="0,5,0,0"  />
+                                                <Label Text="{Binding QTDPED}" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Start" />
+                                            </StackLayout>
+                                            <StackLayout Grid.Column="1" Padding="8" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                                <Label Text="Editar" >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="EditarItem_Tapped"  CommandParameter="{Binding .}" />
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                                <Label Text=" | " />
+                                                <Label Text="Excluir" >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="ExcluirItem_Tapped"  CommandParameter="{Binding .}" />
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

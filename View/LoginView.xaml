@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:appSGSales2"
+             x:Class="appSGSales2.View.LoginView" BackgroundColor="White">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+    <ContentPage.Content>
+      <AbsoluteLayout>
+            <StackLayout BackgroundColor="White" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="{Binding Carregando}" >
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" Padding="30" >
+                    <ActivityIndicator IsRunning="True" Color="DarkBlue" />
+                    <Label TextColor="DarkBlue" Text="Logando...." />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
+                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Padding="50" HeightRequest="20">
+                    <Image x:Name="imgLogo" Source="drawable/logo.png" />
+                </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Orientation="Vertical" Padding="50" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Source="drawable/user" Aspect="AspectFill"  Grid.Row="0" Grid.Column="0" />
+                        <Entry x:Name="eLogin" Text="{Binding Nome}" Placeholder="Digite o usuário" VerticalOptions="FillAndExpand" MaxLength="3" Grid.Row="0" Grid.Column="1" />
+                        <Image Source="drawable/ic_lock" Aspect="AspectFill" Grid.Row="1" Grid.Column="0" />
+                        <Entry x:Name="ePassword" Text="{Binding Senha}" Placeholder="Digite a senha" IsPassword="True" VerticalOptions="FillAndExpand" Grid.Row="1" Grid.Column="1" />
+                        <Button Text="Acessar" Command="{Binding AcessarCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Padding="20" BackgroundColor="BlueViolet"/>
+                    </Grid>
+                    <Label Text="{Binding Mensagem}" TextColor="Black" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"></Label>
+                </StackLayout>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

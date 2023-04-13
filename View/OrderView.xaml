@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage x:Class="appSGSales2.View.OrderView"
+            xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:viewmodel="clr-namespace:appSGSales2.ViewModel"
+            x:DataType="viewmodel:OrderViewModel"
+            xmlns:models="clr-namespace:appSGSales2.Model"
+            Title ="Pedidos">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="false" IsVisible="False"/>
+    </Shell.BackButtonBehavior>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+                <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <CollectionView x:Name="listaPedido" 
+                                        ItemsSource="{Binding Pedidos}"
+                                        VerticalOptions="FillAndExpand" 
+                                        SelectionMode="None">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="models:Pedido">
+                                <SwipeView Threshold="200">
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem Text="Delete"
+                                                       IconImageSource="delete.png"
+                                                       BackgroundColor="Gray"
+                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:OrderViewModel}},Path=DeleteOrderCommand}"
+                                                       CommandParameter="{Binding .}" />
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <Frame BorderColor="DeepSkyBlue" CornerRadius="20" Padding="10" Margin="10" >
+                                    
+                                        <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="120" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <StackLayout Grid.Column="0" Padding="20" Spacing="0">
+                                                        <Label Text="Pedido local" FontSize="Micro" />
+                                                        <Label Text="{Binding id_numpede_app}" FontAttributes="Bold" FontSize="Medium" Margin="0,-5,0,0" />
+                                                        <Label Text="Pedido" FontSize="Micro" />
+                                                        <Label Text="{Binding numpede}" FontAttributes="Bold" FontSize="Medium" Margin="0,-5,0,0" />
+                                                        <Label Text="Loja" FontSize="Micro" Margin="0,5,0,0"  />
+                                                        <Label Text="{Binding CODCLI}" FontAttributes="Bold" FontSize="Title" Margin="0,-5,0,0"  />
+                                                        <Label Text="Contato" FontSize="Micro" Margin="0,5,0,0"  />
+                                                        <Label Text="{Binding CONTATO}" FontAttributes="Bold" FontSize="Medium" Margin="0,-5,0,0"/>
+                                                        <Label Text="Transportadora" FontSize="Micro" Margin="0,5,0,0"  />
+                                                        <Label Text="{Binding TRANSPORTADORA}" FontAttributes="Bold" FontSize="Medium" Margin="0,-5,0,0" />
+                                                        <Label Text="Cond.Pagto" FontSize="Micro" Margin="0,5,0,0"  />
+                                                        <Label Text="{Binding CONDPGTO}" FontSize="Medium" FontAttributes="Bold" Margin="0,-5,0,0" />
+                                                        <Label Text="Observação" FontSize="Micro" Margin="0,5,0,0"  />
+                                                        <Label Text="{Binding OBSERVACAO}" FontAttributes="Bold" Margin="0,-5,0,0" />
+                                                    </StackLayout>
+                                                    <StackLayout Grid.Column="1" Padding="20">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="150"/>
+                                                                <RowDefinition Height="Auto"/>
+                                                            </Grid.RowDefinitions>
+                                                            <StackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand">
+                                                                <Label Text="+Detalhe">
+                                                                    <Label.GestureRecognizers>
+                                                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:OrderViewModel}},Path=ShowOrderCommand}"
+                                                                                              CommandParameter="{Binding .}" />
+                                                                    </Label.GestureRecognizers>
+                                                                </Label>
+                                                            </StackLayout>
+                                                            <Frame x:Name="frameItens" BorderColor="Orange" CornerRadius="20" Grid.Column="0" Grid.Row="1" VerticalOptions="EndAndExpand" >
+                                                                <StackLayout Padding="0" Spacing="0">
+                                                                    <Label Text="Itens" TextColor="DimGray" FontSize="Micro" HorizontalTextAlignment="Center" Margin="0,1,0,0" />
+                                                                    <Label Text="" FontSize="Large" HorizontalTextAlignment="Center" />
+                                                                </StackLayout>
+                                                            </Frame>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </Grid>
+                                </Frame>
+                                </SwipeView>
+
+                            </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                    <Button x:Name="btnNewPedido" Text="Novo Pedido" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:OrderViewModel}},Path=PedidoCommand}" Padding="20" Margin="10" />
+                <Button x:Name="btnUpdateTables" Text="Atualiza Tabelas" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:OrderViewModel}},Path=UpdateCommand}" Padding="20" Margin="10" />
+            </StackLayout>
+            </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>    

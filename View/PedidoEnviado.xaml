@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="appSGSales2.View.PedidoEnviado">
+  <ContentPage.Content>
+      <StackLayout>
+            <CollectionView x:Name="listaPedidoEnviado" VerticalOptions="FillAndExpand" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                            <Grid Margin="10,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="120" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <StackLayout Grid.Column="0" Padding="10" Spacing="0">
+                                    <Label Text="{Binding numpede}" FontAttributes="Bold" FontSize="Subtitle" />
+                                    <Label Text="{Binding DTEMISS,StringFormat='{0:MMMM d, yyyy HH:mm}'}" FontAttributes="Bold" FontSize="Subtitle" />
+                                    <Label Text="{Binding CODCLI}" FontAttributes="Bold" FontSize="Subtitle"  />
+                                    <Label Text="{Binding CONTATO}" FontAttributes="Bold" FontSize="Subtitle" />
+                                    <Label Text="{Binding TRANSPORTADORA}" FontAttributes="Bold" FontSize="Subtitle" />
+                                    <Label Text="{Binding CONDPGTO}" FontSize="Subtitle" FontAttributes="Bold" />
+                                    <Label Text="{Binding OBSERVACAO}" FontAttributes="Bold"  />
+                                </StackLayout>
+                            </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+      </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

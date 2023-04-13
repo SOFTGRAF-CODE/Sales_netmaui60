@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<FlyoutPage x:Class="appSGSales2.View.PedidoMain"
+            xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            Title ="Pedidos">
+    <FlyoutPage.Flyout>
+        <ContentPage Title="Pedidos">
+            <AbsoluteLayout>
+                <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="{Binding Carregando}">
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" Padding="20">
+                        <ActivityIndicator IsRunning="True" Color="Blue"/>
+                        <Label Text="{Binding Mensagem}" TextColor="Blue" />
+                    </StackLayout>
+                </StackLayout>
+                <BoxView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,0.3" BackgroundColor="BlueViolet" />
+                <Frame HasShadow="True" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0.35,1,0.2" BackgroundColor="White">
+                </Frame>
+                <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.2,0.3,0.3" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Frame HasShadow="True" AbsoluteLayout.LayoutFlags="All" BorderColor="White" Padding="1,1,1,1">
+                        
+                    </Frame>
+                    <Label Text="" TextColor="Black" FontSize="Caption" Grid.Row="1" />
+                </Grid>
+
+                <Grid AbsoluteLayout.LayoutFlags="All"  AbsoluteLayout.LayoutBounds="0,0.7,0.8,0.2" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="ic_backup.png" Grid.Row ="0" Grid.Column="0" />
+                    <Label x:Name="lblEnvio" Text="Envio de Pedidos" FontSize="Default" FontFamily="Century Gotic" VerticalOptions="Center" Grid.Row ="0" Grid.Column="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"  />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Image Source="ic_cached.png"  Grid.Row ="1" Grid.Column="0" />
+                    <Label Text="Atualizações" FontSize="Default" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" FontFamily="Century Gotic">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AtualizarCommand}"  />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Image Source="ic_power_settings_new.png"  Grid.Row ="2" Grid.Column="0" />
+                    <Label Text="Sair" FontSize="Default" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" FontFamily="Century Gotic">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SairCommand}"  />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </AbsoluteLayout>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+    <FlyoutPage.Detail>
+        <ContentPage BindingContext="{Binding .}">
+            <AbsoluteLayout>
+                <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <ListView x:Name="listaPedido" HasUnevenRows="True" SeparatorVisibility="None" VerticalOptions="FillAndExpand" CachingStrategy="RetainElement">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                        <ViewCell>
+                                        <Frame BorderColor="DeepSkyBlue" CornerRadius="20" Padding="10" Margin="10" >
+                                            <SwipeView>
+                                                <SwipeView.RightItems>
+                                                    <SwipeItems>
+                                                        <SwipeItem Text="Delete" BackgroundColor="Orange"/>
+                                                    </SwipeItems>
+                                                </SwipeView.RightItems>
+
+                                                <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="120" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <StackLayout Grid.Column="0" Padding="20" Spacing="0">
+                                                    <Label Text="Pedido local" FontSize="Micro" />
+                                                    <Label Text="{Binding id_numpede_app}" FontAttributes="Bold" FontSize="Medium" Margin="0,-5,0,0" />
+                                                    <Label Text="Pedido" FontSize="Micro" />
+                                                    <Label Text="{Binding numpede}" FontAttributes="Bold" FontSize="Medium" Margin="0,-5,0,0" />
+                                                    <Label Text="Loja" FontSize="Micro" Margin="0,5,0,0"  />
+                                                    <Label Text="{Binding CODCLI}" FontAttributes="Bold" FontSize="Title" Margin="0,-5,0,0"  />
+                                                    <Label Text="Contato" FontSize="Micro" Margin="0,5,0,0"  />
+                                                    <Label Text="{Binding CONTATO}" FontAttributes="Bold" FontSize="Medium" Margin="0,-5,0,0"/>
+                                                    <Label Text="Transportadora" FontSize="Micro" Margin="0,5,0,0"  />
+                                                    <Label Text="{Binding TRANSPORTADORA}" FontAttributes="Bold" FontSize="Medium" Margin="0,-5,0,0" />
+                                                    <Label Text="Cond.Pagto" FontSize="Micro" Margin="0,5,0,0"  />
+                                                    <Label Text="{Binding CONDPGTO}" FontSize="Medium" FontAttributes="Bold" Margin="0,-5,0,0" />
+                                                    <Label Text="Observação" FontSize="Micro" Margin="0,5,0,0"  />
+                                                    <Label Text="{Binding OBSERVACAO}" FontAttributes="Bold" Margin="0,-5,0,0" />
+                                                </StackLayout>
+                                                <StackLayout Grid.Column="1" Padding="20">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="150"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                        </Grid.RowDefinitions>
+                                                        <StackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand">
+                                                            <Label Text="+Detalhe">
+                                                                <Label.GestureRecognizers>
+                                                                    <TapGestureRecognizer Tapped="Detalhe_Tapped"  CommandParameter="{Binding .}" />
+                                                                </Label.GestureRecognizers>
+                                                            </Label>
+                                                        </StackLayout>
+                                                        <Frame x:Name="frameItens" BorderColor="Orange" CornerRadius="20" Grid.Column="0" Grid.Row="1" VerticalOptions="EndAndExpand" >
+                                                            <StackLayout Padding="0" Spacing="0">
+                                                                <Label Text="Itens" TextColor="DimGray" FontSize="Micro" HorizontalTextAlignment="Center" Margin="0,1,0,0" />
+                                                                <Label Text="" FontSize="Large" HorizontalTextAlignment="Center" />
+                                                            </StackLayout>
+                                                        </Frame>
+                                                    </Grid>
+                                                </StackLayout>
+                                            </Grid>
+                                            </SwipeView>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                    <Button x:Name="btnNewPedido" Text="Novo Pedido" Command="{Binding PedidoCommand}" Padding="20" Margin="10" />
+                </StackLayout>
+            </AbsoluteLayout>
+        </ContentPage>
+    </FlyoutPage.Detail>
+</FlyoutPage>

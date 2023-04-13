@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="appSGSales2.View.FiltraCliente" Title="Pedidos">
+  <ContentPage.Content>
+      <ScrollView>
+          <StackLayout>
+                <StackLayout Orientation="Vertical" Padding="20">
+                    <Label Text="Loja" FontSize="Caption"  />
+                    <Entry x:Name="CODCLI" Text="{Binding CODCLI}" Placeholder="Digite o código da Loja" MaxLength="8" />
+                    <Label Text="Contato" FontSize="Caption"  />
+                    <Entry x:Name="CONTATO" Text="{Binding CONTATO}" Placeholder="Digite o contato do cliente" MaxLength="30" />
+                    <Label Text="Transportadora" FontSize="Caption"  />
+                    <Entry x:Name="TRANSPORTADORA" Text="{Binding TRANSPORTADORA}" Placeholder="Digite a transportadora do cliente" MaxLength="20" />
+                    <Label Text="Condiçao de pagamento" FontSize="Caption"  />
+                    <Entry x:Name="CONDPGTO" Text="{Binding CONDPGTO}" Placeholder="Digite a condição de pagamento" MaxLength="20" />
+                    <Label Text="Observação" FontSize="Caption"  />
+                    <Editor x:Name="OBSERVACAO" Text="{Binding OBSERVACAO}" Placeholder="Digite as observações" HeightRequest="200" VerticalOptions="FillAndExpand" MaxLength="200" />
+                    <Button Text="Adiciona Pedido" Clicked="salvarPedido_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
